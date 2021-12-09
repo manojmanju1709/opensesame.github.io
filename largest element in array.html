@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>Arrays</title>
+
+      
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="coding_interface.css">
+</head>
+<body style="background-color: azure;">
+    <nav>
+         <label class="logo">OPEN SESAME</label>
+         <ul>
+            <li><a class="active" href="home.html">HOME</a></li>
+            <li>
+               <a href="#">PRACTICE
+               <i class="fas fa-caret-down"></i>
+               </a>
+               <ul>
+                  <li><a href="technical.html">TECHNICAL</a></li>
+                  <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+               </ul>
+            </li>
+            
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="placements.html">PLACEMENTS</a></li>
+         </ul>
+      </nav>
+
+      <section class="levels" id="levels">
+        <div class="content">
+          <div class="boxes">
+            <div class="box">
+            <div class="topic"><a style="color:#0E2431;" href="largest element in array.html"><br>
+            <p>
+                Given an array A[] of size n. The task is to find the largest element in it.<br>
+ 
+
+Example 1:<br>
+
+Input:<br>
+n = 5<br>
+A[] = {1, 8, 7, 56, 90}<br>
+Output:<br>
+90<br>
+Explanation:<br>
+The largest element of given array is 90.<br>
+ 
+
+Example 2:<br>
+
+Input:<br>
+n = 7<br>
+A[] = {1, 2, 0, 3, 2, 4, 5}<br>
+Output:<br>
+5<br>
+Explanation:<br>
+The largest element of given array is 5.<br>
+ 
+
+Your Task:  <br>
+You don't need to read input or print anything. Your task is to complete the function largest() which takes the array A[] and its size n as inputs and returns the maximum element in the array.
+
+ 
+
+Expected Time Complexity: O(N)<br>
+Expected Auxiliary Space: O(1)<br>
+
+ 
+
+Constraints:<br>
+1 <= n<= 103<br>
+0 <= A[i] <= 103<br>
+Array may contain duplicate elements. <br>
+
+            </p></a></div>
+          </div>
+            <div class="box" style="background-color: rgba(191, 194, 201, 0.733);">
+            <div class="topic"><a style="color:#0E2431;" href="Strings.html">
+            <p>
+                import java.util.*;<br>
+import java.lang.*;<br>
+import java.io.*;<br>
+
+class GFG {<br>
+	public static void main(String[] args) throws IOException<br>
+	{<br>
+	        BufferedReader br =<br>
+            new BufferedReader(new InputStreamReader(System.in));<br>
+        int t =<br>
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases<br>
+        while(t-->0)<br>
+        {<br>
+            int n = Integer.parseInt(br.readLine().trim());<br>
+            int a[] = new int[n];<br>
+            // long getAnswer[] = new long[(int)(n)];<br>
+            String inputLine[] = br.readLine().trim().split(" ");<br>
+            for (int i = 0; i < n; i++) {<br>
+                a[i] = Integer.parseInt(inputLine[i]);<br>
+            }<br>
+            
+            Compute obj = new Compute();<br>
+            System.out.println(obj.largest(a, n));<br>
+            
+        }<br>
+	}<br>
+}<br>
+// } Driver Code Ends<br>
+
+
+//User function Template for Java<br>
+
+class Compute {<br>
+    
+    public int largest(int arr[], int n)<br>
+    {<br>
+     int max=arr[0];<br>
+      for(int i=1;i<n;i++){<br>
+         if(arr[i]>max)<br>
+          max=arr[i];<br>
+      }<br>
+    return max;<br>
+    
+    }<br>
+}<br>
+
+            </p></a></div>
+          </div>
+</div>
+</div>
+</section>
+</body></html>     
