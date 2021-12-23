@@ -1,0 +1,321 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+//Initial template for C++
+
+#include <bits/stdc++.h> 
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function template in C++
+
+
+class Solution{
+    public:
+    // A1[] : the input array-1
+    // N : size of the array A1[]
+    // A2[] : the input array-2
+    // M : size of the array A2[]
+    
+    //Function to sort an array according to the other array.
+    vector<int> sortA1ByA2(vector<int> A1, int N, vector<int> A2, int M) 
+    {
+        //Your code here
+        sort(A1.begin(),A1.end());
+        vector<bool> vis(N,false);
+        vector<int> ans;
+        for(int i=0;i<M;i++){
+            int id=find(A2[i],A1,N);
+            if(id==-1){
+                continue;
+            }
+            for(int j=id;j<N && A1[j]==A2[i];j++){
+                ans.push_back(A2[i]);
+                vis[j]=true;
+            }
+        }
+        for(int i=0;i<N;i++){
+            if(!vis[i]){
+                ans.push_back(A1[i]);
+            }
+        }
+        return ans;
+    } 
+    
+    int find(int a,vector<int>& v,int& n){
+        int lo=0;
+        int hi=n-1;
+        while(lo<=hi){
+            int mid=lo+(hi-lo)/2;
+            if((mid==0 || v[mid-1]<a) && v[mid]==a){
+                return mid;
+            }
+            if(v[mid]<a){
+                lo=mid+1;
+            }
+            else{
+                hi=mid-1;
+            }
+        }
+        return -1;
+    }
+};
+
+// { Driver Code Starts.
+
+int main(int argc, char *argv[]) 
+{ 
+	
+	int t;
+	
+	cin >> t;
+	
+	while(t--){
+	    
+	    int n, m;
+	    cin >> n >> m;
+	    
+	    vector<int> a1(n);
+	    vector<int> a2(m);
+	    
+	    for(int i = 0;i<n;i++){
+	        cin >> a1[i];
+	    }
+	    
+	    for(int i = 0;i<m;i++){
+	        cin >> a2[i];
+	    }
+	    
+	    Solution ob;
+	    a1 = ob.sortA1ByA2(a1, n, a2, m); 
+	
+	   
+	    for (int i = 0; i < n; i++) 
+		    cout<<a1[i]<<" ";
+		
+	    cout << endl;
+	    
+	    
+	}
+	return 0; 
+} 
+  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+import java.util.HashMap; 
+import java.util.Map; 
+import java.util.Map.Entry; 
+
+
+ // } Driver Code Ends
+//User function Template for Java
+
+class Solution{
+    // A1[] : the input array-1
+    // N : size of the array A1[]
+    // A2[] : the input array-2
+    // M : size of the array A2[]
+    
+    //Function to sort an array according to the other array.
+    public static int[] sortA1ByA2(int A1[], int N, int A2[], int M)
+    {
+        //Your code here
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i=0; i<N; i++){
+           if(!map.containsKey(A1[i]))
+           map.put(A1[i], 1);
+           else
+           map.replace(A1[i],map.get(A1[i])+1);
+        }
+        ArrayList<Integer> a = new ArrayList<>();
+        for(int i=0; i<M; i++){
+            if(map.containsKey(A2[i])){
+                for(int j=0; j<map.get(A2[i]); j++)
+                    a.add(A2[i]);
+                map.remove(A2[i]);
+            }
+        }
+        ArrayList<Integer> b = new ArrayList();
+        for(Map.Entry<Integer, Integer> e: map.entrySet()){
+            for(int i=0;i<e.getValue(); i++)
+            b.add(e.getKey());
+        }
+        Collections.sort(b);
+        a.addAll(b);
+        int ans[] = new int[N];
+        for(int i=0; i<N; i++)
+        ans[i] = a.get(i);
+        return ans;
+    }
+}
+
+
+
+// { Driver Code Starts.
+class Main {
+	public static void main (String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		int t=sc.nextInt();
+		
+		while(t-->0)
+		{
+		    int n=sc.nextInt();
+		    int m=sc.nextInt();
+		    int a1[]=new int[n];
+		    int a2[]=new int[m];
+		    
+		    for(int i=0;i<n;i++)
+		    a1[i]=sc.nextInt();
+		    
+		    for(int i=0;i<m;i++)
+		    a2[i]=sc.nextInt();
+		    Solution ob=new Solution();
+		    a1 = ob.sortA1ByA2(a1,n,a2,m);
+		    for(int x:a1)
+		    System.out.print(x+" ");
+		    
+		    System.out.println();
+		}
+	}
+	
+
+}
+
+
+  // } Driver Code Ends
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+class Solution:
+    # A1[] : the input array-1
+    # N : size of the array A1[]
+    # A2[] : the input array-2
+    # M : size of the array A2[]
+    
+    #Function to sort an array according to the other array.
+    def relativeSort (self,a1, n, a2, z):
+        # Your Code Here
+        m = {}
+        for i in range(z):
+            if a2[i] not in m:
+                m[a2[i]] = i
+        
+        for ele in a1:
+            if ele not in m:
+                m[ele] = ele + z
+        
+        self.mergesort(a1, m)
+        return a1
+    
+    
+    def mergesort(self, arr, m):
+        if len(arr) > 1:
+            mid = len(arr)//2
+            left = arr[:mid]
+            right = arr[mid:]
+            
+            self.mergesort(left, m)
+            self.mergesort(right, m)
+            
+            i = j = k = 0
+            while i < len(left) and j < len(right):
+                if m[left[i]] < m[right[j]]:
+                    arr[k] = left[i]
+                    i+=1
+                else:
+                    arr[k] = right[j]
+                    j+=1
+                k+=1
+            
+            while i < len(left):
+                arr[k] = left[i]
+                i += 1
+                k += 1
+            
+            while j < len(right):
+                arr[k] = right[j]
+                j+=1
+                k+=1
+            
+            
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__':
+    t = int (input ())
+    while t > 0:
+        n, m = list(map(int, input().split()))
+        a1 = list(map(int, input().split()))
+        a2 = list(map(int, input().split()))
+        
+        ob=Solution()
+        a1 = ob.relativeSort (a1, n, a2, m)
+        print (*a1, end = " ")
+        
+        print ()
+        
+        t -= 1
+
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

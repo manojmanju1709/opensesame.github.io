@@ -1,0 +1,239 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution
+{
+    public:
+        int closestToZero(int arr[], int n)
+        {
+            // your code here 
+            
+            sort(arr,arr+n);
+            
+            if(arr[0]>=0)
+            return arr[0]+arr[1];
+            
+            if(arr[n-1]+arr[n-2]<=0)
+            return arr[n-1]+arr[n-2];
+   
+   
+            int i=0;
+            int j=n-1;
+            
+            vector<int> v;
+            
+            int temp;
+            
+            
+            int res=INT_MAX;
+            
+            int ileft=0;
+            int iright=n-1;
+            
+   
+            while(i<j)
+            {
+                temp=arr[i]+arr[j];
+    
+                if(abs(temp)<abs(res))
+                {
+                    res=temp;
+                    
+                    ileft=i;
+                    iright=j;
+                    
+                }
+                if(temp<0)
+                i++;
+                else
+                j--;
+            }
+            
+            if(res<0)
+            {
+                ileft++;
+                while(ileft<iright)
+                {
+                    temp=arr[ileft]+arr[iright];
+                    
+                    if(abs(res)==temp)
+                    {
+                            res=temp;
+                            break;
+                        
+                    }
+                    if(temp<0)
+                    ileft++;
+                    else
+                    iright--;
+                }
+                
+            }
+            
+           return res;
+        }
+};
+
+// { Driver Code Starts.
+int main ()
+{
+    int t; 
+    cin >> t;
+    while (t--)
+    {
+        int n; 
+        cin >> n;
+        int arr[n];
+        for (int i = 0; i < n; i++)
+            cin >> arr[i];
+        Solution ob;
+        cout << ob.closestToZero(arr, n) << endl;
+    }
+}  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+class GfG
+{
+    public static void main (String[] args)
+    {
+        
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n = sc.nextInt();
+            int[] arr = new int[n];
+            
+            for (int i = 0; i < n; ++i)
+                arr[i] = sc.nextInt ();
+
+    		System.out.println (new Sol().closestToZero (arr, n));
+        }
+        
+    }
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Sol
+{
+    public static int closestToZero (int arr[], int n)
+    {
+        // your code here
+        Arrays.sort(arr);
+        int beg=0,end=n-1,ans=Integer.MAX_VALUE;
+        while(beg<end)
+        {
+           int sum=arr[beg]+arr[end];
+           if(Math.abs(ans)>Math.abs(sum-0)||(Math.abs(ans)==Math.abs(sum-0)&&sum>ans))
+           ans=sum;
+           if(sum>0)
+           end--;
+           else
+           beg++;
+        //   System.out.println(ans);
+        }
+        return ans;
+    }
+}
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+class Solution:
+    def closestToZero (self,arr, n):
+        # your code here
+        arr.sort()
+        i = 0
+        j = n - 1
+        min = abs(arr[i] + arr[j])
+        while i < j:
+            if arr[i] + arr[j] > 0:
+                if abs(arr[i] + arr[j]) < abs(min):
+                    min = arr[i] + arr[j]
+                j = j - 1
+            elif arr[i] + arr[j] == 0:
+                min = arr[i] + arr[j]
+                return min
+            elif arr[i] + arr[j] < 0:
+                if abs(arr[i] + arr[j]) <abs(min):
+                    min = arr[i] + arr[j]
+                i = i + 1
+            if arr[i] + arr[j] == abs(min):
+                min = arr[i] + arr[j]
+        return min
+            
+            
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+t = int (input ())
+for tc in range(t):
+    n = int (input ())
+    arr = list(map(int, input().split()))
+    ob = Solution()
+    print (ob.closestToZero (arr, n))
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

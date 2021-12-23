@@ -1,0 +1,291 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution
+{
+    
+    public:
+    long bsl(vector<long long> v,long long x){
+        long lo=0;
+        long hi=v.size()-1;
+        long mid,res=-1;
+        while(lo<=hi){
+            mid=lo+(hi-lo)/2;
+            if(v.at(mid)==x){
+                res=mid;
+                hi=mid-1;
+            }
+            else if(v.at(mid)>x){
+                hi=mid-1;
+            }
+            else
+                lo=mid+1;
+        }
+        return res;
+    }
+    long bsr(vector<long long> v,long long x){
+        long lo=0;
+        long hi=v.size()-1;
+        long mid,res=-1;
+        while(lo<=hi){
+            mid=lo+(hi-lo)/2;
+            if(v.at(mid)==x){
+                res=mid;
+                lo=mid+1;
+            }
+            else if(v.at(mid)>x){
+                hi=mid-1;
+            }
+            else
+                lo=mid+1;
+        }
+        return res;
+    }
+    
+    pair<long,long> indexes(vector<long long> v, long long x)
+    {
+        // code here
+        long a=bsl(v,x);
+        long b=bsr(v,x);
+        pair<long,long> ans;
+        ans=make_pair(a,b);
+        return ans;
+    //     int size=v.size();
+    //     // code here
+    //   pair<long,long> p;
+    //   int first=lower_bound(v.begin(),v.end(),x)-v.begin();
+    //   int second=upper_bound(v.begin(),v.end(),x)-v.begin()-1;
+    //   if(first>=size || v[first]!=x){
+    //       return {-1,-1};  
+    //   }
+    //   return {first,second};
+    }
+};
+
+// { Driver Code Starts.
+
+int main()
+ {
+    long long t;
+    cin>>t;
+    while(t--)
+    {
+        long long n, k;
+        vector<long long>v;
+        cin>>n;
+        for(long long i=0;i<n;i++)
+        {
+            cin>>k;
+            v.push_back(k);
+        }
+        long long x;
+        cin>>x;
+        Solution obj;
+        pair<long,long> pair = obj.indexes(v, x);
+        
+        if(pair.first==pair.second and pair.first==-1)
+        cout<< -1 <<endl;
+        else
+        cout<<pair.first<<" "<<pair.second<<endl;
+
+    }
+	return 0;
+}
+  // } Driver Code Ends				
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class pair  {  
+    long first, second;  
+    public pair(long first, long second)  
+    {  
+        this.first = first;  
+        this.second = second;  
+    }  
+}
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            long n = Long.parseLong(br.readLine().trim());
+            long a[] = new long[(int)(n)];
+            // long getAnswer[] = new long[(int)(n)];
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Long.parseLong(inputLine[i]);
+            }
+            long k = Long.parseLong(br.readLine().trim());
+            
+            Solution obj = new Solution();
+            pair ans = obj.indexes(a, k);
+            if (ans.first == -1 && ans.second == -1)
+                System.out.println(-1);
+            else
+                System.out.println(ans.first+" "+ans.second);
+            
+        }
+	}
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+/*
+class pair  {  
+    long first, second;  
+    public pair(long first, long second)  
+    {  
+        this.first = first;  
+        this.second = second;  
+    }  
+}
+*/
+
+class Solution {
+    
+    public pair indexes(long v[], long x)
+    {
+        int n=v.length;
+       return new pair(first(v, 0, n - 1, x, n),last(v, 0, n - 1, x, n));
+    }
+    public static int first(long arr[], int low, int high, long x, int n)
+    {
+        if (high >= low) {
+            int mid = low + (high - low) / 2;
+            if ((mid == 0 || x > arr[mid - 1]) && arr[mid] == x)
+                return mid;
+            else if (x > arr[mid])
+                return first(arr, (mid + 1), high, x, n);
+            else
+                return first(arr, low, (mid - 1), x, n);
+        }
+        return -1;
+    }
+    public static int last(long arr[], int low, int high, long x, int n)
+    {
+        if (high >= low) {
+            int mid = low + (high - low) / 2;
+            if ((mid == n - 1 || x < arr[mid + 1]) && arr[mid] == x)
+                return mid;
+            else if (x < arr[mid])
+                return last(arr, low, (mid - 1), x, n);
+            else
+                return last(arr, (mid + 1), high, x, n);
+        }
+        return -1;
+    }
+}
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+class Solution:
+    def indexes(self, v, x):
+        p=0
+        n=len(v)-1
+        q=n
+        while(p<=q):
+            if v[p]==x and v[q]==x:
+                return p,q
+            if v[q]!=x:
+                q-=1
+            if v[p]!=x:
+                p+=1
+        return -1,-1
+    
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+def main():
+
+    T = int(input())
+
+    while(T > 0):
+        n = int(input())
+        a = [int(x) for x in input().strip().split()]
+        k = int(input())
+        obj = Solution()
+        ans = obj.indexes(a, k)
+        if ans[0]==-1 and ans[1]==-1:
+            print(-1)
+        else:
+            print(ans[0], end=' ')
+            print(ans[1])
+
+        T -= 1
+
+
+if __name__ == "__main__":
+    main()
+
+
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

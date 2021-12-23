@@ -1,0 +1,258 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+class Solution
+{
+  public:
+   int minimum(int a,int b,int c){
+        return min({a,b,c});
+    }
+    int maximum(int a,int b,int c){
+        return max({a,b,c});
+    }
+    vector<int> smallestDifferenceTriplet(int arr1[], int arr2[], int arr3[], int n)
+    {
+    sort(arr1,arr1+n);
+        sort(arr2,arr2+n);
+        sort(arr3,arr3+n);
+        int x=0,y=0,z=0;
+        int curr_min=INT_MAX;
+        vector<int> res;
+        while(x<n && y<n && z<n){
+            int mini=minimum(arr1[x],arr2[y],arr3[z]);
+            int maxi=maximum(arr1[x],arr2[y],arr3[z]);
+            if(curr_min>maxi-mini){
+                res.clear();
+                res.push_back(arr1[x]);
+                res.push_back(arr2[y]);
+                res.push_back(arr3[z]);
+                curr_min=maxi-mini;
+            }
+            if(arr1[x]==mini) x++;
+            else if(arr2[y]==mini) y++;
+            else z++;
+        }
+        sort(res.begin(),res.end(),greater<int>());
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		int a[n],b[n],c[n];
+		for(int i=0;i<n;++i)
+			cin>>a[i];
+		for(int i=0;i<n;++i)
+			cin>>b[i];
+		for(int i=0;i<n;++i)
+			cin>>c[i];
+		
+		Solution ob;	
+		vector<int> ans=ob.smallestDifferenceTriplet(a,b,c,n);
+		cout<< ans[0] <<" "<<ans[1]<<" "<<ans[2] << endl;
+	}
+	return 0;
+}
+  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+
+
+
+import java.io.*;
+import java.util.*;
+// Driver class
+class GFG
+{
+    public static void main(String[] args) throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(br.readLine().trim());
+        while(T-->0)
+        {
+            int n = Integer.parseInt(br.readLine().trim());
+            int[] a = new int[n];
+            int[] b = new int[n];
+            int[] c = new int[n];
+            String[] s1 = br.readLine().trim().split(" ");
+            for(int i = 0; i < n; i++)
+                a[i] = Integer.parseInt(s1[i]);
+            String[] s2 = br.readLine().trim().split(" ");
+            for(int i = 0; i < n; i++)
+                b[i] = Integer.parseInt(s2[i]);
+            String[] s3 = br.readLine().trim().split(" ");
+            for(int i = 0; i < n; i++)
+                c[i] = Integer.parseInt(s3[i]);
+            Solution ob=new Solution();
+            ArrayList<Integer> ans=ob.smallestDifferenceTriplet(a,b,c,n);
+            System.out.println(ans.get(0)+" "+ans.get(1)+" "+ans.get(2));
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    ArrayList<Integer> smallestDifferenceTriplet(int a[],int b[],int c[],int n)
+    {
+        Arrays.sort(a);
+        Arrays.sort(b);
+        Arrays.sort(c);
+        
+        int i1=0,i2=0,i3=0;
+        
+        int ans=Integer.MAX_VALUE;
+        int ai1=0,ai2=0,ai3=0;
+        while(i1<a.length && i2<b.length && i3<c.length){
+            
+            int max=Math.max(a[i1],Math.max(b[i2],c[i3]));
+            int min=Math.min(a[i1],Math.min(b[i2],c[i3]));
+            //  System.out.println(a[i1]+" "+b[i2]+" "+c[i3]+" max "+max+" min "+min);
+    
+            if(max-min<ans){
+               ans=max-min;
+                ai1=i1;
+                ai2=i2;
+                ai3=i3;
+            }
+            
+            if(a[i1]==min){
+                i1++;
+            }
+            
+            if(b[i2]==min)
+            i2++;
+            
+            if(c[i3]==min)
+            i3++;
+            
+        }
+        
+        ArrayList<Integer> answer=new ArrayList<>();
+        
+        answer.add(a[ai1]);
+        answer.add(b[ai2]);
+        answer.add(c[ai3]);
+        
+        Collections.sort(answer);
+        Collections.reverse(answer);
+        
+        return answer;
+    }
+}
+
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+class Solution:
+    def smallestDifferenceTriplet(self,a,b,c,n):
+        a=sorted(a)
+        b=sorted(b)
+        c=sorted(c)
+        x,y,z=0,0,0
+        res=[]
+        curr_min=99999
+        while(x<n and y<n and z<n):
+            mini=min(a[x],b[y],c[z])
+            maxi=max(a[x],b[y],c[z])
+            if(curr_min>maxi-mini):
+                res.clear()
+                res.append(a[x])
+                res.append(b[y])
+                res.append(c[z])
+                curr_min=maxi-mini
+            if(a[x]==mini):
+                x+=1
+            elif(b[y]==mini):
+                y+=1
+            else:
+                z+=1
+        res.sort(reverse=True)
+        return res
+
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+
+
+
+t=int(input())
+for _ in range(0,t):
+    n=int(input())
+    a = list(map(int,input().split()))
+    b = list(map(int, input().split()))
+    c = list(map(int, input().split()))
+    ob = Solution()
+    ans=ob.smallestDifferenceTriplet(a,b,c,n)
+    print(ans[0],ans[1],ans[2])
+
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

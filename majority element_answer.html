@@ -1,0 +1,222 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+//Initial template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function template for C++
+
+class Solution{
+  public:
+     // Function to find majority element in the array
+    // a: input array
+    // size: size of input array
+    int majorityElement(int a[], int size)
+    {
+        
+        // your code here
+        sort(a,a+size);
+        int i=0,j,k;
+        while(i<size){
+             k=1;
+            for( j=i+1;j<size;j++){
+              if(a[i]==a[j])
+                  k++;
+                  else
+                    break;
+            }
+            if(k>size/2)
+               break;
+            else
+               i=j;
+        }
+        if(k>size/2)
+          return a[i];
+        return -1;
+    }
+};
+
+// { Driver Code Starts.
+
+int main(){
+
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >> n;
+        int arr[n];
+        
+        for(int i = 0;i<n;i++){
+            cin >> arr[i];
+        }
+        Solution obj;
+        cout << obj.majorityElement(arr, n) << endl;
+    }
+
+    return 0;
+}
+  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class Geeks
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        
+        while(t-- > 0)
+        {
+            int n =sc.nextInt();
+            int arr[] = new int[n];
+            
+            for(int i = 0; i < n; i++)
+             arr[i] = sc.nextInt();
+             
+           System.out.println(new Solution().majorityElement(arr, n)); 
+        }
+    }
+}// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    static int majorityElement(int arr[], int size)
+    {
+        // your code here
+        Map<Integer,Integer> map = new HashMap();
+        for(int i=0;i<size;i++){
+            if(map.containsKey(arr[i])){
+                map.put(arr[i], map.get(arr[i])+1);
+            }else{
+                map.put(arr[i], 1);
+            }
+        }
+        
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()){
+            if(entry.getValue()>size/2){
+                return entry.getKey();
+            }
+        }
+        
+        return -1;
+    }
+}
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+class Solution:
+    def majorityElement(self, A, N):
+        #Your code here
+        maj_index = 0
+        count = 0
+        for i in range(N):
+            if A[maj_index] == A[i]:
+                count += 1
+            else:
+                count -= 1
+            if count == 0:
+                maj_index = i
+                count = 1
+        
+        # check whether A[maj_index] is really majority element
+        count = 0
+        for i in range(N):
+            if A[maj_index] == A[i]:
+                count += 1
+            if count > N//2:
+                return A[maj_index]
+        
+        return -1
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+import math
+
+from sys import stdin
+
+
+def main():
+        T=int(input())
+        while(T>0):
+            
+            N=int(input())
+
+            A=[int(x) for x in input().strip().split()]
+            
+            
+            obj = Solution()
+            print(obj.majorityElement(A,N))
+            
+            T-=1
+
+
+if __name__ == "__main__":
+    main()
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

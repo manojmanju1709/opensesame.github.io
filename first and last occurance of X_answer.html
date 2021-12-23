@@ -1,0 +1,256 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+class Solution {
+  public:
+    vector<int> firstAndLast(vector<int> &arr, int n, int x) {
+        // Code here
+        vector<int>v;
+        int count=0;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]==x)
+            {
+                v.push_back(i);
+                break;
+            }
+            else
+            {
+                count++;
+            }
+        }
+        if(count==n)
+        {
+            v.push_back(-1);
+            return v;
+        }
+        
+        for(int i=n-1;i>=0;i--)
+        {
+            if(arr[i]==x)
+            {
+                v.push_back(i);
+                break;
+            }
+        }
+        return v;
+    }
+};
+
+// { Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, x;
+        cin >> n >> x;
+        vector<int> arr(n);
+        for (int i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+
+        Solution obj;
+        vector<int> ans= obj.firstAndLast(arr, n, x) ;
+        for(int i:ans){
+            cout<<i<<" ";
+        }
+        cout<< endl;
+    }
+    return 0;
+}
+  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+//Initial Template for Java
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            String inputLine[] = br.readLine().trim().split(" "); 
+            int n = Integer.parseInt(inputLine[0]); 
+            int x = Integer.parseInt(inputLine[1]);
+            
+            int arr[] = new int[(int)(n)];
+            
+            String inputLine1[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                arr[i] = Integer.parseInt(inputLine1[i]);
+            }
+            
+            Solution obj = new Solution();
+            ArrayList<Integer> ans = obj.firstAndLast(arr, n, x); 
+            
+            for (Integer val: ans) 
+                System.out.print(val+" "); 
+            System.out.println();
+        }
+    } 
+} 
+            
+
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+class Solution{
+    public ArrayList<Integer> firstAndLast(int a[], int n, int x){
+        // Code here
+        ArrayList<Integer> ans = new ArrayList<>();
+        int first = -1;
+        int last = -1;
+        int low = 0,high = n-1;
+        while (low<=high){
+            int mid = low+(high-low)/2;
+            if (a[mid]==x){
+                first=mid;
+                high=mid-1;
+            }else if (x<a[mid]){
+                high=mid-1;
+            }else
+                low=mid+1;
+        }
+        if (first==-1){
+            ans.add(-1);
+            return ans;
+        }
+        low = 0;
+        high = n-1;
+        while (low<=high){
+            int mid = low+(high-low)/2;
+            if (a[mid]==x){
+                last=mid;
+                low=mid+1;
+            }else if (x>a[mid]){
+                low=mid+1;
+            }else
+                high=mid-1;
+        }
+        ans.add(first);
+        ans.add(last);
+        return ans;
+    }
+}
+
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+class Solution: 
+    def firstAndLast(self, arr, n, x): 
+        # Code here
+        first = -1
+        second = -1
+        
+        start = 0
+        end = n - 1
+        
+        while start <= end:
+            mid = (start + end) // 2
+            
+            if arr[mid] == x and (mid == 0 or arr[mid-1] < x):
+                first = mid
+                break
+            elif arr[mid] < x:
+                start = mid + 1
+            else:
+                end = mid - 1
+        
+        start = 0
+        end = n - 1
+        
+        while start <= end:
+            mid = (start + end) // 2
+            
+            if arr[mid] == x and (mid == n-1 or arr[mid+1] > x):
+                second = mid
+                break
+            elif arr[mid] > x:
+                end = mid - 1
+            else:
+                start = mid + 1
+        
+        if first == -1 or second == -1:
+            return [-1]
+        return [first, second]
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+if __name__ == '__main__': 
+    t = int(input()) 
+    for _ in range(t):
+        n,x = [int(i) for i in input().split()] 
+        arr = [int(i) for i in input().split()] 
+        ob=Solution() 
+        ans=ob.firstAndLast(arr,n,x) 
+        s=(" ").join(map(str,ans))
+        print(s)
+
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

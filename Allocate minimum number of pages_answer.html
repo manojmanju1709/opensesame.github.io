@@ -1,0 +1,281 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+// Initial template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function template in C++
+
+#define ll long long
+
+
+bool help(int a[],int n,int k,int ans){
+        int req=1,sum=0;
+        for(int i=0;i<n;i++){
+            if(sum+a[i]>ans){
+                req++;
+                sum=a[i];
+            }
+            else{
+                sum+=a[i];
+            }
+        }
+        return (req<=k)?true:false;
+    }
+
+class Solution 
+{
+    public:
+    //Function to find minimum number of pages.
+    int findPages(int A[], int N, int M) 
+    {
+        int sum=0,mx=0;
+        for(int i=0;i<N;i++){
+            sum+=A[i];
+            mx=max(mx,A[i]);
+        }
+        int l=mx,h=sum,res=0;
+        while(l<=h){
+            int mid=(l+h)/2;
+            if(help(A,N,M,mid)){
+                res=mid;
+                h=mid-1;
+            }
+            else{
+                l=mid+1;
+            }
+        }
+        return res;
+        //code here
+    }
+};
+
+// { Driver Code Starts.
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        int A[n];
+        for(int i=0;i<n;i++){
+            cin>>A[i];
+        }
+        int m;
+        cin>>m;
+        Solution ob;
+        cout << ob.findPages(A, n, m) << endl;
+    }
+    return 0;
+}
+  // } Driver Code Ends				
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+class GFG {
+	public static void main (String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		int t=sc.nextInt();
+		
+		while(t-->0)
+		{
+		    int n=sc.nextInt();
+		    int a[]=new int[n];
+		    
+		    for(int i=0;i<n;i++)
+		    {
+		        a[i]=sc.nextInt();
+		    }
+		    int m=sc.nextInt();
+		    Solution ob = new Solution();
+		    System.out.println(ob.findPages(a,n,m));
+		}
+	}
+}// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution 
+{
+    //Function to find minimum number of pages.
+    public static int findPages(int[]A,int N,int M)
+    {
+        return splitArray(A,M);
+    }
+    
+    public static int splitArray(int[] nums, int m) {
+        
+        
+        
+        /*
+        
+        https://www.youtube.com/watch?v=eEvLI9i02Zw&list=PLgT5F5jYnV8MV6R6eYQRBhMczd8WeCYjw&index=2
+        
+        T(n) = O(nlogn)
+        
+        
+        //Alocate Minimum number of pages
+        
+        */
+        int max = Integer.MIN_VALUE;
+        int totalSum =0;
+        for(int n : nums){
+          max = Math.max(n,max);
+            totalSum+=n;
+        }
+        
+        int left = max;
+        int right = totalSum; 
+        int mid =0;
+        while(left<=right){
+            
+             mid = left+(right-left)/2;
+             
+            if(countSplit(mid, nums,m))
+                right = mid- 1;
+            else
+                 left = mid+1;
+          
+        }
+        
+        return left;
+    }
+    
+    
+    private static boolean countSplit(int mid , int[] nums,int m){
+        
+        int count =1;
+        int sum = 0;
+        for(int n : nums){
+            sum+=n;
+            if(sum>mid){
+                sum=n;
+                count++;
+            }
+            
+            if(count>m)
+                return false;
+            
+        }
+        
+        return true;
+    }
+};
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+  
+    def isValid(self, arr, barrier, m):
+        students = 1
+        pages = 0
+        for i in range(0, n):
+            if(arr[i] > barrier):
+                return False
+            if(arr[i]+pages > barrier):
+                students += 1
+                pages = arr[i]   #new student will have arr[i] pages
+            else:
+                pages += arr[i]
+        if(students>m):
+            return False
+        else:
+            return True
+            
+            
+    #Function to find minimum number of pages.
+    def findPages(self,arr, n, m):
+        #code here
+        
+        low = min(arr)
+        high = sum(arr)
+        res = -1
+        while(low<=high):
+            mid = (low+high)//2
+            if(self.isValid(arr, mid, m)):
+                res = mid
+                high = mid-1
+            else:
+                low = mid+1
+        return res
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+#contributed by RavinderSinghPB
+if __name__=='__main__':
+    t=int(input())
+    for _ in range(t):
+        
+        n=int(input())
+        
+        arr=[int(x) for x in input().strip().split()]
+        m=int(input())
+        
+        ob=Solution()
+        
+        print(ob.findPages(arr,n,m))
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

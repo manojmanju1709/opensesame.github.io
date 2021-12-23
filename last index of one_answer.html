@@ -1,0 +1,174 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+class Solution{
+    public:
+    int lastIndex(string s) 
+    {
+        int n=s.length();
+        for(int i=n-1;i>=0;i--)
+        {
+            if(s[i]=='1')
+                return i;
+        }
+        return -1;
+    }
+
+};
+
+// { Driver Code Starts.
+
+int main() {
+    long long t;
+    cin >> t;
+    while (t--) {
+        string s;
+        cin >> s;
+        Solution ob;
+        cout << ob.lastIndex(s) << endl;
+    }
+    return 0;
+}  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while(t-->0)
+        {
+            String s = br.readLine();
+            
+            Solution obj = new Solution();
+            System.out.println(obj.lastIndex( s));
+            
+        }
+	}
+}
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+
+class Solution {
+    public int lastIndex( String s) {
+        char[] ch = s.toCharArray();
+        int ind = -1;
+        for(int i=ch.length;i>0;i--){
+            if(ch[i-1]=='1'){
+                ind = i-1;
+                return ind;
+            }
+        }
+        return ind;
+    }
+}
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+class Solution:
+    def lastIndex(self, s):
+        # code here
+        n = len(s)
+        if '1' not in s:
+            return -1
+            
+        res = -1
+        for i in range(n-1, -1, -1):
+            if s[i] == '1':
+                res = i
+                break
+            
+        return res
+        
+        
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+
+def main():
+
+    T = int(input())
+
+    while(T > 0):
+        s = input()
+        ob = Solution()
+        print(ob.lastIndex(s))
+        
+        T -= 1
+
+
+if __name__ == "__main__":
+    main()
+
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

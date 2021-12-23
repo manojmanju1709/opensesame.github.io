@@ -1,0 +1,219 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include<bits/stdc++.h> 
+using namespace std; 
+
+ // } Driver Code Ends
+class Solution{   
+public:
+    long long int nineDivisors(long long int N){
+        //Code Here
+        long long int x=sqrt(N);
+        long long int y=sqrt(sqrt(x));
+        long long int ans=0;
+        vector<bool>a(x+1,true);
+        vector<long long int>v;
+         for(long long int i=2;i<=x;i++){
+            if(a[i]){
+                if(i<=y)
+                ans++;
+                v.push_back(i);
+                for(long long int j=i*i;j<=x;j+=i)
+                a[j]=false;
+            }
+        }
+        long long int n=v.size();
+        long long int s=0;
+        long long int e=n-1;
+        while(e>s){
+            if(v[e]*v[s]<=x){
+                ans+=(e-s);
+                s++;
+            }
+            else{
+                e--;
+            }
+        }
+        return ans;
+    }
+};
+
+// { Driver Code Starts.
+int main() 
+{ 
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        long long int N;
+        cin>>N;
+        Solution ob;
+        cout << ob.nineDivisors(N) << endl;
+    }
+    return 0; 
+}  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+import java.io.*;
+import java.util.*;
+
+ // } Driver Code Ends
+//User function Template for Java
+class Solution{
+    static long nineDivisors(long n){
+       long c = 0;
+ 
+        int limit = (int) Math.sqrt(n);
+ 
+        // Sieve array
+        int prime[] = new int[limit + 1];
+ 
+        // initially prime[i] = i
+        for (int i = 1; i <= limit; i++) {
+            prime[i] = i;
+        }
+ 
+        // use sieve concept to store the
+        // first prime factor of every number
+        for (int i = 2; i * i <= limit; i++) {
+            if (prime[i] == i) {
+                // mark all factors of i
+                for (int j = i * i; j <= limit; j += i) {
+                    if (prime[j] == j) {
+                        prime[j] = i;
+                    }
+                }
+            }
+        }
+  for (int i = 2; i <= limit; i++) {
+            // p prime factor
+            int p = prime[i];
+ 
+            // q prime factor
+            int q = prime[i / prime[i]];
+ 
+            // if both prime factors are different
+            // if p*q<=n and q!=
+            if (p * q == i && q != 1 && p != q) {
+                c += 1;
+            } else if (prime[i] == i) {
+ 
+                // Check if it can be expressed as p^8
+                if (Math.pow(i, 8) <= n) {
+ 
+                    c += 1;
+                }
+            }
+        }
+ 
+        return c;
+    }
+}
+
+// { Driver Code Starts.
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+        while(t-- > 0)
+        {
+            long N = Long.parseLong(read.readLine());
+
+            Solution ob = new Solution();
+            System.out.println(ob.nineDivisors(N));
+        }
+    }
+}  // } Driver Code Ends
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+   def nineDivisors(self, N):
+        c = 0
+        limit = int(N ** (0.5))  
+        prime = [i for i in range(limit + 1)]  
+        i = 2
+        while i * i <= limit:  
+            if prime[i] == i:  
+                    
+                for j in range(i * i, limit + 1, i):  
+                    if prime[j] == j:  
+                        prime[j] = i  
+            i += 1
+        for i in range(2, limit + 1):  
+              
+            p = prime[i]  
+      
+            q = prime[i // prime[i]]  
+            if p * q == i and q != 1 and p != q:  
+                c += 1
+            elif prime[i] == i:  
+        
+                if i ** 8 <= N:  
+                    c += 1
+        return c
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+if __name__ == '__main__': 
+    t = int (input ())
+    for _ in range (t):
+        N = int(input())
+        ob = Solution()
+        print(ob.nineDivisors(N))
+
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

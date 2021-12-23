@@ -1,0 +1,181 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+class Solution{
+    public:
+    long long solve(int arr[], int n){
+    sort(arr,arr+n);
+      long long ans= ((long long)n*(long long)(n-1))/2;
+       long long c=1;
+       for(long long i=0;i<n-1;i++)
+      {
+          if(arr[i]==arr[i+1])
+          {
+              c++;
+          }
+          else
+          {
+              ans=ans-(c*(c-1))/2;
+              c=1;
+          }
+      }
+       ans=ans-(c*(c-1))/2;
+      return ans;
+    
+    }
+};
+
+// { Driver Code Starts.
+int main(){
+    int t;
+    cin >> t;
+    while(t--){
+        int n; 
+        cin >> n;
+        int arr[n];
+        for(int i = 0; i<n; i++)
+            cin >> arr[i];
+        Solution ob;
+        long long ans = ob.solve(arr,n);
+        cout << ans << endl;
+    }
+}
+  // } Driver Code Ends				
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+import java.util.*;
+
+public class GFG
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        
+        int t = sc.nextInt();
+        
+        while (t-- > 0)
+        {
+            int n = sc.nextInt();
+            
+            int arr[] = new int[n];
+            for (int i = 0;i < n;i++)
+            {
+                arr[i] = sc.nextInt();
+            }
+            
+            Solution sol = new Solution();
+            System.out.println(sol.solve(arr, n));
+        }
+    }
+}// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution 
+{
+    long solve(int arr[], int n)
+    {
+        // Complete this fnction
+        Arrays.sort(arr);
+        long ans=0;
+        long cnt=1;
+        for(int i=1;i<n;i++){
+            if(arr[i]==arr[i-1])
+             cnt++;
+            else{
+                ans+=cnt*(n-i);
+                cnt=1;
+            }
+            
+        }
+        return ans;
+        
+    }
+}
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+from bisect import bisect_right
+class Solution:
+    def solve(self, arr : list, n : int):
+        arr.sort()
+
+        count = 0
+        for i in arr:
+            '''sorted array te bisect_right er por (bakigulo i theke boro.
+            cause i<j. tai i theke boro sobgulor sathe i good_pair korte pare. That's why n-re'''
+            re = bisect_right(arr,i)
+            count += n - re
+
+        return count
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    arr = [int(x) for x in input().split()]
+    ob=Solution()
+    print(ob.solve(arr, n))
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

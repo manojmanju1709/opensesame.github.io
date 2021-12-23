@@ -1,0 +1,150 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+		#include <bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+class Solution{
+  public:
+    int findExtra(int a[], int b[], int n) {
+        // add code here.
+        int l = 0, r = n-1, mid;
+        if (a[n-1] != b[n-2] && a[n-2] == b[n-3]) return n-1;
+        while (l <= r && mid != n-1) {
+            mid = (l+r)/2;
+            if (a[mid] == b[mid]) l = mid + 1;
+            if (a[mid] < b[mid]) {
+                if (a[mid-1] == b[mid-1]) return mid;
+                else r = mid-1;
+            }
+        }
+    }
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        int a[n], b[n - 1];
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+        for (int i = 0; i < n - 1; i++) {
+            cin >> b[i];
+        }
+        Solution obj;
+        cout << obj.findExtra(a, b, n) << endl;
+    }
+}  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+import java.util.*;
+class ExtraElement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int[] a = new int[n];
+            int[] b = new int[n - 1];
+            for (int i = 0; i < n; i++) a[i] = sc.nextInt();
+            for (int i = 0; i < n - 1; i++) b[i] = sc.nextInt();
+            Solution g = new Solution();
+            System.out.println(g.findExtra(a, b, n));
+        }
+    }
+}// } Driver Code Ends
+
+
+/*Complete the function below*/
+class Solution {
+    public int findExtra(int a[], int b[], int n) {
+        int start = 0;
+        int end = n - 1;
+        
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if(a[mid] == b[mid]) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+        return end;
+    }
+}
+				
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+  def findExtra(self,a,b,n):
+        #add code here
+        for element in range(0,n-1):
+            if (a[element] != b[element]):
+                return element
+        return n-1
+        
+#{ 
+#  Driver Code Starts
+if __name__ == "__main__":
+    t=int(input())
+    for i in range(t):
+        n=int(input())
+        a=list(map(int,input().split()))
+        b=list(map(int,input().split()))
+        print(Solution().findExtra(a,b,n))
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

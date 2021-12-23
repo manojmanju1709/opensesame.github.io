@@ -1,0 +1,220 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+	#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+class Solution{
+  public:
+/*You are required to complete this method*/
+    bool solve(int p, int s,string &ptn, string &str, vector<vector<int>> &dp){
+        if(p == ptn.length()){
+            return s == str.length();
+        }else if(s == str.length()){
+            for(int i = p ; i < ptn.length() ; i++)
+                if(ptn[i] != '*') 
+                    return false;
+            return true;        
+        }
+        if(dp[p][s] != -1) return dp[p][s];
+        //cout << p << " , " << s << "  ++    " << ptn[p] << " --  " << str[s] <<  "\n";
+        if(ptn[p] == '*'){
+            return dp[p][s] = (solve(p,s+1,ptn,str,dp) || solve(p+1,s,ptn,str,dp));
+        }else if(ptn[p] == '?' || ptn[p] == str[s]){
+            return dp[p][s] = solve(p+1,s+1,ptn,str,dp);    
+        }
+        return dp[p][s] = false;
+    }
+    int wildCard(string pattern,string str)
+    {
+        vector<vector<int>> dp( pattern.length()+1 , vector<int>(str.length()+1 , -1 ));
+        return solve(0,0,pattern,str,dp);
+    }
+};
+
+// { Driver Code Starts.
+int main()
+{
+   int t;
+   cin>>t;
+   while(t--)
+   {
+           string pat,text;
+           cin>>pat;
+cin.ignore(numeric_limits<streamsize>::max(),'\n');
+           cin>>text;
+           Solution obj;
+           cout<<obj.wildCard(pat,text)<<endl;
+   }
+}
+  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+import java.util.*;
+
+class WildcardPattern
+{
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		sc.nextLine();
+		while(t>0)
+		{
+			String pat = sc.nextLine();
+			String text = sc.nextLine();
+			Solution g = new Solution();
+			System.out.println(g.wildCard(pat,text));
+			t--;
+		}
+	}
+}// } Driver Code Ends
+
+
+class Solution
+{
+    int wildCard(String pattern, String str)
+    {
+        int m=pattern.length();
+        int n=str.length();
+        boolean dp[][]=new boolean[n+1][m+1];
+        dp[0][0]=true;
+        for(int i=1;i<=n;i++)
+            dp[i][0]=false;
+        for(int i=1;i<=m;i++)
+        {
+            if(pattern.charAt(i-1)=='*')
+                dp[0][i]=dp[0][i-1];
+        }
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=m;j++)
+            {
+                if(str.charAt(i-1)==pattern.charAt(j-1) || pattern.charAt(j-1)=='?')
+                    dp[i][j]=dp[i-1][j-1];
+                else if(pattern.charAt(j-1)=='*')
+                    dp[i][j]=dp[i-1][j]||dp[i][j-1];
+                else 
+                    dp[i][j]=false;
+            }
+        }
+        if(dp[n][m]==true)
+            return 1;
+        return 0;    
+    }
+}
+
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+class Solution:
+    def wildCard(self,pat,st):
+        s = len(st);p = len(pat)
+        dp = {}
+        def solve(i,j):
+            if i >= s and j >= p:
+                return True 
+            if (i,j) in dp:
+                return dp[(i,j)]
+            if i >= s:
+                if pat[j] == "*":
+                    dp[(i,j)] = solve(i,j+1)
+                    return dp[(i,j)]
+                else:
+                    dp[(i,j)] = False
+                    return dp[(i,j)]
+                # ok = True 
+                # c = int(j)
+                # while c < p and pat[c] == "*":
+                #     c += 1
+                # if c < p:
+                #     ok = False 
+                # dp[(i,j)] = ok
+                # return dp[(i,j)]
+            if j >= p:
+                if i < s:
+                    dp[(i,j)] = False 
+                else:
+                    dp[(i,j)] = True
+                return dp[(i,j)]
+            if i >= s or j >= p:
+                return False
+            if pat[j] not in ("?","*") and st[i]!=pat[j]:
+                return False
+            if st[i] == pat[j]:
+                dp[(i,j)] = solve(i+1,j+1)
+                return dp[(i,j)]
+            if pat[j] == "?":
+                dp[(i,j)] = solve(i+1,j+1)
+                return dp[(i,j)]
+            if pat[j] == "*":
+                dp[(i,j)] = solve(i+1,j) or solve(i,j+1)
+                return dp[(i,j)]
+            
+        return solve(0,0)
+
+#{ 
+#  Driver Code Starts
+if __name__=='__main__':
+    t = int(input())
+    for i in range(t):
+        pattern = input().strip()
+        string = input().strip()
+        if Solution().wildCard(pattern, string):
+            print(1)
+        else:
+            print(0)
+# Contributed by: Harshit Sidhwa
+
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

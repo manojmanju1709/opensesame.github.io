@@ -1,0 +1,256 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+class Solution
+{
+    public:    
+       vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+            int i=0,j=0,k=0;
+            vector<int> v;
+            while(i<n1 and j<n2 and k<n3){
+                if(A[i]==B[j] and B[j]==C[k]){
+                    v.push_back(A[i]);
+                    i++,j++,k++;
+                }
+                else if(A[i]<B[j])i++;
+                else if(B[j]<C[k])j++;
+                else k++;
+                int t=A[i-1];
+                while(t==A[i])i++;
+                int t1=B[j-1];
+                while(t1==B[j])j++;
+                int t2=C[k-1];
+                while(t2==C[k])k++;
+            }
+            if(v.size()==0)return {-1};
+            return v;
+            //code here.
+        }
+
+};
+
+// { Driver Code Starts.
+
+int main ()
+{
+    int t; cin >> t;
+    while (t--)
+    {
+        int n1, n2, n3; 
+        cin >> n1 >> n2 >> n3;
+        int A[n1];
+        int B[n2];
+        int C[n3];
+        
+        for (int i = 0; i < n1; i++) cin >> A[i];
+        for (int i = 0; i < n2; i++) cin >> B[i];
+        for (int i = 0; i < n3; i++) cin >> C[i];
+        
+        Solution ob;
+        
+        vector <int> res = ob.commonElements (A, B, C, n1, n2, n3);
+        if (res.size () == 0) 
+            cout << -1;
+        for (int i = 0; i < res.size (); i++) 
+            cout << res[i] << " "; 
+        cout << endl;
+    }
+}  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+import java.util.*;
+
+public class GFG
+{
+    public static void main(String args[]) 
+    {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) 
+        {
+            int n1 = sc.nextInt();
+            int n2 = sc.nextInt();
+            int n3 = sc.nextInt();
+            
+            int A[] = new int[n1];
+            int B[] = new int[n2];
+            int C[] = new int[n3];
+            
+            for (int i = 0;i < n1;i++)
+            {
+                A[i] = sc.nextInt();
+            }
+            for (int i = 0;i < n2;i++)
+            {
+                B[i] = sc.nextInt();
+            }
+            for (int i = 0;i < n3;i++)
+            {
+                C[i] = sc.nextInt();
+            }
+            
+            Solution sol = new Solution();
+            ArrayList<Integer> res = sol.commonElements(A, B, C, n1, n2, n3);
+            if (res.size() == 0)
+            {
+                System.out.print(-1);
+            }
+            else 
+            {
+                for (int i = 0;i < res.size();i++)
+                {
+                    System.out.print(res.get(i) + " ");
+                }    
+            }
+            System.out.println();
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution
+{
+    ArrayList<Integer> commonElements(int A[], int B[], int C[], int n1, int n2, int n3) {
+        // code here 
+        ArrayList<Integer> list = new ArrayList<>();
+        Map<Integer , Integer> map = new HashMap<>();
+        for(int i=0;i<n1;i++) {
+            map.put(A[i] , 1);
+        }
+        for(int i=0;i<n2;i++) {
+            if(map.get(B[i]) != null) {
+                map.put(B[i] , 2);
+            }
+        }
+        
+        for(int i=0;i<n3;i++) {
+            if(map.get(C[i]) != null && map.get(C[i]) == 2) {
+                map.put(C[i] , 3);
+            }
+        }
+        if(!map.isEmpty()) {
+        for(Map.Entry<Integer , Integer> entry : map.entrySet()) {
+            if(entry.getValue() != null && entry.getValue() == 3) {
+                list.add(entry.getKey());
+            }
+            
+        }
+        } else {
+            list.add(-1);
+        }
+        Collections.sort(list);
+        return list;
+    }
+}
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+class Solution:
+    def commonElements (self,A, B, C, n1, n2, n3):
+        # your code
+        l=[]
+        i=0
+        j=0
+        k=0
+        prev =False
+        while(i<n1 and j<n2 and k<n3):
+            if A[i]==B[j] and B[j]==C[k] and A[i]!=prev:
+                l.append(A[i])
+                prev =A[i]
+                i+=1
+                j+=1
+                k+=1
+            elif A[i]<B[j]:
+                i+=1
+            elif B[j]<C[k]:
+                j+=1
+            else:
+                k+=1
+        return l
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+
+t = int (input ())
+for tc in range (t):
+    n1, n2, n3 = list(map(int,input().split()))
+    A = list(map(int,input().split()))
+    B = list(map(int,input().split()))
+    C = list(map(int,input().split()))
+    
+    ob = Solution()
+    
+    res = ob.commonElements (A, B, C, n1, n2, n3)
+    
+    if len (res) == 0:
+        print (-1)
+    else:
+        for i in range (len (res)):
+            print (res[i], end=" ")
+        print ()
+
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

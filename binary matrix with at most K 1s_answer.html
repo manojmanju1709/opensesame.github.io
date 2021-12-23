@@ -1,0 +1,307 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function Template for C++
+
+class Solution {
+public:
+vector<int> largestSquare(vector<vector<int>> M, int R, int C, int K, int Q, int q_i[], int q_j[])
+{
+    std::vector<std::vector<int>> sums(R, std::vector<int>(C));
+	sums[0][0] = M[0][0];
+	for (int r = 1; r < R; ++r)
+	{
+		sums[r][0] = sums[r - 1][0] + M[r][0];
+	}
+	for (int c = 1; c < C; ++c)
+	{
+		sums[0][c] = sums[0][c - 1] + M[0][c];
+	}
+	for (int r = 1; r < R; ++r)
+	{
+		for (int c = 1; c < C; ++c)
+		{
+			sums[r][c] = M[r][c] + sums[r - 1][c] + sums[r][c - 1] - sums[r - 1][c - 1];
+		}
+	}
+
+	std::vector<int> ret(Q);
+	for (int q = 0; q < Q; ++q)
+	{
+		int i = 0;
+		for (int count = 0; q_i[q] - i >= 0 && q_i[q] + i < R && q_j[q] - i >= 0 && q_j[q] + i < C; ++i)
+		{
+			int rstart = q_i[q] - i, rend = q_i[q] + i, cstart = q_j[q] - i, cend = q_j[q] + i;
+			count = sums[rend][cend];
+			if (rstart > 0 && cstart > 0) count += sums[rstart - 1][cstart - 1];
+			if (rstart > 0) count -= sums[rstart - 1][cend];
+			if (cstart > 0) count -= sums[rend][cstart - 1];
+			if (count > K) break;
+		}
+		if (i > 0)
+		{
+			ret[q] = (i - 1) * 2 + 1;
+		}
+	}
+	return ret;
+}
+};
+
+// { Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int R,C,K,Q,x;
+        cin>>R>>C;
+        vector<vector<int>> M;
+        
+        for(int a=0; a<R; a++)
+        {
+            vector<int> temp;
+            for(int b=0; b<C; b++)
+            {
+                cin>>x;
+                temp.push_back(x);
+            }
+            M.push_back(temp);
+        }
+        
+        cin>>K>>Q;
+        
+        int q_i[Q], q_j[Q];
+        
+        for(int i=0; i<Q; i++)
+            cin>>q_i[i];
+        for(int i=0; i<Q; i++)
+            cin>>q_j[i];
+
+        Solution ob;
+        vector<int> res = ob.largestSquare(M,R,C,K,Q,q_i,q_j);
+        
+        for(int i=0; i<Q; i++)
+            cout<<res[i]<<" ";
+        cout<<endl;
+    }
+    return 0;
+}  // } Driver Code Ends				
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>
+<pre>
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    public static void main(String args[]) throws IOException {
+        BufferedReader read =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+        while (t-- > 0) {
+            String S[] = read.readLine().split(" ");
+            int R = Integer.parseInt(S[0]);
+            int C = Integer.parseInt(S[1]);
+            
+            ArrayList<ArrayList<Integer>> M = new ArrayList<>();
+            
+            for(int i=0; i<R; i++)
+            {
+                ArrayList<Integer> temp = new ArrayList<>();
+                String S1[] = read.readLine().split(" ");
+                for(int j=0; j<C; j++)
+                {
+                    temp.add(Integer.parseInt(S1[j]));
+                }
+                M.add(temp);
+            }
+            
+            String S2[] = read.readLine().split(" ");
+            int K = Integer.parseInt(S2[0]);
+            int Q = Integer.parseInt(S2[1]);
+            
+            int[] q_i = new int[Q];
+            int[] q_j = new int[Q];
+            
+            String S3[] = read.readLine().split(" ");
+            String S4[] = read.readLine().split(" ");
+            
+            for(int i=0; i<Q; i++)
+            {
+                q_i[i] = Integer.parseInt(S3[i]);
+                q_j[i] = Integer.parseInt(S4[i]);
+            }
+            
+            Solution ob = new Solution();
+            ArrayList<Integer> res = ob.largestSquare(M,R,C,K,Q,q_i,q_j);
+            
+            for(int i=0; i<Q; i++)
+                System.out.print(res.get(i) + " ");
+            System.out.println();
+        }
+    }
+}// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution {
+    static ArrayList<Integer> largestSquare(ArrayList<ArrayList<Integer>> M, int R, int C, int K, int Q, int[] q_i, int[] q_j) {
+      
+        int[][] countDP = new int[R][C];
+         for(int i = 0; i < R; i++)
+        for(int j = 0; j < C; j++)
+            countDP[i][j] = 0; 
+            countDP[0][0] = M.get(0).get(0);
+        for(int i= 1;i<R;i++){
+            countDP[i][0] = M.get(i).get(0)+countDP[i-1][0];
+            
+        }
+        for(int i =1;i<C;i++){
+            countDP[0][i] = M.get(0).get(i)+countDP[0][i-1];
+        }
+        for(int i =1;i<R;i++){
+            for(int j = 1;j<C;j++){
+                countDP[i][j] = countDP[i-1][j]+countDP[i][j-1]-countDP[i-1][j-1]+M.get(i).get(j);
+            }
+        }
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(int q=0;q<Q;q++){
+            int i = q_i[q];
+            int j = q_j[q];
+            int min_dist = Math.min(Math.min(i,j),Math.min(R-i-1,C-j-1));
+            int temp=-1,l=0,u=min_dist;
+            while(l <= u){
+                int mid = (l+u)/2;
+                int x1 = i-mid;
+                int y1 = j-mid;
+                int x2 = i+mid;
+                int y2 = j+mid;
+                int count = countDP[x2][y2];
+                if(x1 > 0){
+                    count-=countDP[x1-1][y2];
+                }
+                if(y1 > 0){
+                    count-=countDP[x2][y1-1];
+                }
+                if(x1 > 0 && y1 > 0){
+                    count+=countDP[x1-1][y1-1];
+                }
+                if(count <= K){
+                    temp = mid*2 + 1;
+                    l = mid+1;
+                }else {
+                    u = mid-1;
+                }
+            }
+            if(temp == -1) temp = 0;
+            ans.add(temp);
+        }
+        return ans;
+    }
+};
+
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ NO CODE AVAILABLE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

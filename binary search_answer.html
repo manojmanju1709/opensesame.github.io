@@ -1,0 +1,180 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+//Initial template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function template for C++
+
+class Solution{
+public:
+    int binarysearch(int arr[], int n, int k){
+        // code here
+        int beg=0,last=n-1;
+        
+        while(beg<=last)
+        {
+            int mid=(beg+last)/2;
+            if(k==arr[mid])
+             return mid;
+            else
+            {
+                if(arr[mid]<k)
+                beg=mid+1;
+                else
+                last=mid-1;
+            }
+        }
+        return -1;
+    }
+};
+
+// { Driver Code Starts.
+int main()
+{
+    int t;
+    cin>>t;
+
+    while(t--)
+    {
+        int N;
+        cin>>N;
+        int arr[N];
+        for(int i=0;i<N;i++)
+            cin>>arr[i];
+        int key;
+        cin>>key;
+        Solution ob;
+        int found = ob.binarysearch(arr,N,key);
+        cout<<found<<endl;
+    }
+}
+
+  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+public class GFG {
+    public static void main (String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        while(T>0)
+        {
+            int n = sc.nextInt();
+            int arr[] = new int[n];
+            for(int i=0;i<n;i++)
+            {
+                arr[i]=sc.nextInt();
+            }
+             
+            int key =sc.nextInt();
+            Solution g = new Solution();
+            System.out.println(g.binarysearch(arr,n,key));
+            T--;
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution {
+    int binarysearch(int arr[], int n, int k){
+        // code here
+        for(int i=0;i<n;i++){
+            if(k == arr[i]){
+                return i;
+            }
+            }
+            return -1;
+        }
+    }
+
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+
+class Solution:    
+    def binarysearch(self, arr, n, k):
+        # code here
+        for i in range(0,len(arr)):
+            if(arr[i]==k):
+                return i
+        return -1
+                
+
+#{ 
+#  Driver Code Starts
+#Initial template for Python
+
+if __name__ == '__main__':
+    t=int(input())
+    for i in range(t):
+        n=int(input())
+        arr=list(map(int, input().strip().split(' ')))
+        k=int(input())
+        ob = Solution()
+        print (ob.binarysearch(arr, n, k))
+
+
+# } Driver Code Ends                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

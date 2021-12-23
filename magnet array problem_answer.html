@@ -1,0 +1,237 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+class Solution{
+    public:
+        double BS(double L, double R, int n, double magnets[]){
+        double force = 0.0;
+        
+        double M = (L + R) / 2;
+        
+        for(int i = 0; i < n; i++){
+            force += (1.0 / (M - magnets[i]));
+        }
+        
+        // force == 0 (Floating point arithmetic - comparing double to 0)
+        if(abs(force) < 1e-12) return M;
+        
+        else if(force < 0) BS(L, M, n, magnets);
+        else if(force > 0) BS(M, R, n, magnets);
+    }
+    
+    void nullPoints(int n, double magnets[], double getAnswer[]){
+        for(int i = 0; i < n-1; i++){
+            getAnswer[i] = BS(magnets[i], magnets[i+1], n, magnets);
+        }
+    }
+    
+};
+
+// { Driver Code Starts.
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        double magnets[n], getAnswer[n];
+        for(int i=0;i<n;i++)
+        cin>>magnets[i];
+        Solution ob;
+        ob.nullPoints(n, magnets, getAnswer);
+        
+        for(int i=0; i<n-1; i++)
+            printf("%0.2lf ",getAnswer[i]);
+        cout<<endl;
+    }
+    return 0;
+}  // } Driver Code Ends//Initial Template for Java
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+
+class GFG {
+	public static void main(String[] args) throws IOException
+	{
+	        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t =
+            Integer.parseInt(br.readLine().trim()); // Inputting the testcases
+        while(t-->0)
+        {
+            int n = Integer.parseInt(br.readLine().trim());
+            double a[] = new double[(int)(n)];
+            double getAnswer[] = new double[(int)(n)];
+            String inputLine[] = br.readLine().trim().split(" ");
+            for (int i = 0; i < n; i++) {
+                a[i] = Double.parseDouble(inputLine[i]);
+            }
+            
+            Solution obj = new Solution();
+            obj.nullPoints(n, a, getAnswer); 
+            
+            StringBuilder output = new StringBuilder();
+            for(int i=0;i<n-1;i++)
+                output.append(String.format("%.2f", getAnswer[i])+" ");
+                
+            System.out.println(output);
+            
+        }
+	}
+}
+
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+class Solution {
+    
+   private static double binarySearch(double start, double end, double magnets[], int n){
+        while(start<=end){
+            double mid = start+(end-start)/2.0;
+            double force = 0.0;
+            for(int i=0; i<n; i++){
+                force = force + (1.0/(mid-magnets[i]));
+            }
+            if(Math.abs(force)<=0.0000001){
+                return mid;
+            }
+            if(force>0.0)
+                start = mid;
+            else
+                end = mid;
+        }
+        return -1.0;
+    }
+   void nullPoints(int n, double magnets[], double getAnswer[])
+    {
+        // Your code goes here 
+        for(int i=0;i<n-1;i++)
+        {
+            getAnswer[i]=binarySearch(magnets[i],magnets[i+1], magnets,n);
+        }
+    }
+    
+}
+
+
+		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+import decimal
+class Solution:
+    def jedi(self,a,x):
+        force = 0
+        for i in a:
+            k = x-i
+            force+=1/k
+        return force    
+    def bsearch(self,a,low,high):
+        mid = (low + high)/2
+        force = round(self.jedi(a,mid),5)
+        if force == 0:
+            return mid
+        elif force > 0:
+            return self.bsearch(a,mid,high)
+        else:
+            return self.bsearch(a,low,mid)
+    
+    def nullPoints(self, n, a, getAnswer):
+        for i in range(n-1):
+            getAnswer[i] = decimal.Decimal("{:.2f}".format(self.bsearch(a,a[i],a[i+1])))
+            
+            
+
+
+
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+def main():
+
+    T = int(input())
+
+    while(T > 0):
+        n = int(input())
+        a = [int(x) for x in input().strip().split()]
+        getAnswer = [0]*n
+        ob=Solution()
+        ob.nullPoints(n, a, getAnswer)
+        
+        for i in range(0,n-1):
+            print(round(getAnswer[i],2), end=" ")
+        print()
+
+        T -= 1
+
+
+if __name__ == "__main__":
+    main()
+
+
+# } Driver Code Ends                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

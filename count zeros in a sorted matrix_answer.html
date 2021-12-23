@@ -1,0 +1,193 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+#include <bits/stdc++.h>
+
+using namespace std;
+
+ // } Driver Code Ends
+//Back-end complete function Template for C++
+
+class Solution{
+public:
+	int countZeros(vector<vector<int>>A)
+	{
+		//code here
+		int col=0;
+		int row=A.size()-1;
+		int cnt=0;
+		while(col<A.size())
+		{
+		    while(A[row][col]==1)
+		    {
+		        if(--row<0)
+		        return cnt;
+		        
+		    }
+		    cnt=cnt+(row+1);
+		    col++;
+		}
+		return cnt;
+	}
+};
+
+// { Driver Code Starts.
+
+// Driver program
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        vector<vector<int>>A(n,vector<int>(n,0));
+        for(int i=0;i<n;i++){
+            for(int j =0;j<n;j++){
+                cin>>A[i][j];
+            }
+        }
+        Solution ob;
+        cout<<ob.countZeros(A)<<'\n';
+    }
+    return 0;
+}
+  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+import java.util.*;
+
+
+
+class Count_0_In_Sorted_Matrix
+{
+	public static void main(String args[])
+	{
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t > 0)
+		{
+			int n = sc.nextInt();
+			int arr[][] = new int[1000][1000];
+			for(int i=0; i<n; i++)
+			{
+				for(int j=0; j<n; j++ )
+				{
+					arr[i][j] = sc.nextInt();
+				}
+			}
+			System.out.println(new GfG().countZeros(arr, n));
+		t--;
+		}
+	}
+}// } Driver Code Ends
+
+
+class GfG
+{
+    /*you are required to complete this method*/
+    int countZeros(int A[][], int N)
+    {
+        // Your code here
+int i=0;
+int j= N-1;
+int res=0;
+
+while(i<N && j>=0){
+    if(A[i][j] == 1){
+        j--;
+    }
+    else{
+        res += (j+1);
+        i++;
+}
+    }
+    return res;
+    }
+}
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+class Solution:
+    def countZeroes(self, A, N):
+        count = 0
+        for outer in A:
+            for inner in outer:
+                if inner != 0:
+                    break
+                count += 1
+                
+        return count
+    
+
+
+#{ 
+#  Driver Code Starts
+# Your code goes here
+if __name__=='__main__':
+    t = int(input())
+    for i in range(t):
+        n = int(input().strip())
+        arr = list(map(int, input().strip().split()))
+        matrix = [[0 for i in range(n)]for j in range(n)]
+        k=0
+        for i in range(n):
+            for j in range(n):
+                matrix[i][j] = arr[k]
+                k+=1
+        
+        ob = Solution()
+        print (ob.countZeroes(matrix, n))
+        
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>

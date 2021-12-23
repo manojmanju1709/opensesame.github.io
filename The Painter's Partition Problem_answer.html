@@ -1,0 +1,258 @@
+<!DOCTYPE html>  
+ <html>  
+ <head>  
+      <meta charset="utf-8">  
+      <title>KeyPad Typing</title>  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link rel="stylesheet" type="text/css" href="tab_css.css">  
+      <link rel="stylesheet" type="text/css" href="technical.css">
+ </head>  
+ <body>  
+    <nav>
+        <label class="logo">OPEN SESAME</label>
+        <ul>
+           <li><a class="active" href="home.html">HOME</a></li>
+           <li>
+              <a href="#">PRACTICE
+              <i class="fas fa-caret-down"></i>
+              </a>
+              <ul>
+                 <li><a href="technical.html">TECHNICAL</a></li>
+                 <li><a href="non_technical.html">NON-TECHNICAL</a></li>
+              </ul>
+           </li>
+           
+           <li><a href="about.html">ABOUT US</a></li>
+           <li><a href="placements.html">PLACEMENTS</a></li>
+        </ul>
+     </nav>
+      <div class="main" style="height: 1200px;">  
+       
+           <div class="btn-box">  
+                <button class="btn active" id="btn1" onclick="tab1()">C++</button>  
+                <button class="btn" id="btn2" onclick="tab2()"> JAVA</button>  
+                <button class="btn" id="btn3" onclick="tab3()">PYTHON</button>  
+           </div>  
+           <div id="content1" class="content">  
+            <h1>C++</h1>  
+                <pre>
+		// driver code
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+//User function template for C++
+
+class Solution
+{
+  public:
+  
+    bool isTrue(int arr[],int n,int k,long long mid){
+        long long painter = 1 , sum = 0;
+        for(int i=0;i<n;i++){
+            if(sum + arr[i] > mid){
+                painter++;
+                sum = arr[i];
+            }else{
+                sum += arr[i];
+            }
+        }
+        return painter <= k;
+    }
+    
+    long long minTime(int arr[], int n, int k){
+        long long sum = 0,res = -1;
+        for(int i=0;i<n;i++){
+            sum += arr[i];
+        }
+        long long low = *max_element(arr,arr+n),high = sum;
+        while(low<=high){
+            long long mid = (low+high)/2;
+            if(isTrue(arr,n,k,mid)){
+                res = mid;
+                high = mid - 1;
+            }else{
+                low = mid + 1;
+            }
+        }
+        return res;
+    }
+};
+
+// { Driver Code Starts.
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int k,n;
+		cin>>k>>n;
+		
+		int arr[n];
+		for(int i=0;i<n;i++)
+		    cin>>arr[i];
+		Solution obj;
+		cout << obj.minTime(arr, n, k) << endl;
+	}
+	return 0;
+}  // } Driver Code Ends		
+</pre>  
+                
+           </div>  
+           <div id="content2" class="content">  
+            <h1>JAVA</h1>  
+                <pre>
+//Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG
+{
+    public static void main(String args[])throws IOException
+    {
+        BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(read.readLine());
+        while(t-- > 0)
+        {
+            String input_line1[] = read.readLine().trim().split("\\s+");
+            int k = Integer.parseInt(input_line1[0]);
+            int n = Integer.parseInt(input_line1[1]);
+            String input_line[] = read.readLine().trim().split("\\s+");
+            int arr[]= new int[n];
+            for(int i = 0; i < n; i++)
+                arr[i] = Integer.parseInt(input_line[i]);
+            
+            Solution ob = new Solution();
+            System.out.println(ob.minTime(arr,n,k));
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+ class Solution{
+     
+     public static long maxAns = 0;
+    static long minTime(int[] arr,int n,int k){
+        //code here
+        
+        long max = 0,  min = 0;
+        for(int num : arr) {
+            min = Math.max(min,num);
+            max = max+num;
+            
+        }
+        
+         long start = min;
+        long end = max;
+        while(start<end) {
+           long  mid = ( start + (end) ) / 2;
+            long men = findFeasible(arr, mid);
+            if(men>k) {
+                start = mid+1;
+                
+            } else if(men <= k) {
+                
+                end = mid;
+            }
+            
+            
+        }
+        
+        return end;
+    }
+    
+    
+    public static long findFeasible(int[] arr, long valForEach) {
+        
+        long total =0;
+        long men = 1;
+       for(int i=0;i<arr.length;i++) {
+           total = total + arr[i];
+         if(total>valForEach)   {
+             total = arr[i];
+             men++;
+         }
+       }
+      return men;  
+    }
+}
+
+
+
+				
+</pre>  
+                 
+           </div>  
+           <div id="content3" class="content" >  
+                <h1>Python</h1>  
+                <pre>
+
+class Solution:
+    def minTime (self, arr, n, k):
+        lo = max(arr)
+        hi = sum(arr)
+     
+        while (lo < hi):
+            mid = lo + (hi - lo) // 2
+            requiredPainters = self.possible(arr, n, mid)
+    
+            if (requiredPainters <= k):
+                hi = mid
+     
+
+            else:
+                lo = mid + 1
+     
+        # required
+        return lo
+    
+    def possible(self, arr, n, maxLen):
+        total = 0
+        numPainters = 1
+     
+        for i in arr:
+            total += i
+     
+            if total > maxLen:
+     
+                # for next count
+                total = i
+                numPainters += 1
+ 
+        
+        return numPainters
+#{ 
+#  Driver Code Starts
+#Initial Template for Python 3
+
+
+if __name__ == '__main__': 
+    t = int (input ())
+    for _ in range (t):
+        str = input().split()
+        k = int(str[0])
+        n = int(str[1])
+        arr = input().split()
+        for itr in range(n):
+            arr[itr] = int(arr[itr])
+
+        ob = Solution()
+        print(ob.minTime(arr,n,k))
+# } Driver Code Ends
+                   
+</pre>  
+                
+           </div>  
+      </div>  
+ <script type="text/javascript" src="tab_jsp.js"></script>  
+ </body>  
+ </html>
